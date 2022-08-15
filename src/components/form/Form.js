@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { variableEnvironmentDevelopment } from '../../commons/ventorno'
 
-const Form = ({ listPets, pet, setPet, updatePet }) => {
+const Form = ({ listPets, pet, setPet, updatePet, bottonFormAction }) => {
     const add = e => {
         e.preventDefault();
         
@@ -88,7 +88,7 @@ const Form = ({ listPets, pet, setPet, updatePet }) => {
                     />
                 </div>
 
-                <button type='submit' id='add'>Crear Mascota</button>
+                <button type='submit' id='add'>{bottonFormAction}</button>
 
             </form>
         </div>
