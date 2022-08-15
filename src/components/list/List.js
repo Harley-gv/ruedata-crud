@@ -4,7 +4,7 @@ import './List.css'
 
 const List = ({ pets }) => {
 
-    console.log(pets)
+ 
     const [atributo, setAtributo] = useState({ 'value': 'editar' })
 
     return (

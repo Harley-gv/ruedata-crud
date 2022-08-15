@@ -9,7 +9,7 @@ const Form = ({listPets}) => {
 
     const add = e => {
         e.preventDefault();
-        console.log('add pets')
+        
         const pets = {
             nombre: name,
             edad: age,
