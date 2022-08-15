@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Botton = ({atributo}) => {
+const Botton = ({deletePet, id, findPetById}) => {
+     
     return (
         <div>
-            <input type="button" value='edit' />
-            <input type="button" value='delete' />
+            <input type="button" value='Editar' onClick={()=> findPetById(id)}/>
+            <input type="button" value='Eliminar' onClick={() => deletePet(id)}/>
         </div>
     );
 };

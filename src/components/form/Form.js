@@ -1,31 +1,40 @@
-import React, {useState } from 'react';
+import React from 'react';
 import axios from 'axios';
-import {variableEnvironmentDevelopment} from '../../commons/ventorno'
+import { variableEnvironmentDevelopment } from '../../commons/ventorno'
 
-const Form = ({listPets}) => {
-    const [name, setName] = useState('')
-    const [age, setAge] = useState('')
-    const [breed, setBreed] = useState('')
-
+const Form = ({ listPets, pet, setPet, updatePet }) => {
     const add = e => {
         e.preventDefault();
         
-        const pets = {
-            nombre: name,
-            edad: age,
-            raza: breed,
+        if (pet._id) {
+            
+            const petRequestUpdate = {
+                id: pet._id,
+                pet: {
+                    name: pet.name,
+                    age: pet.age,
+                    breed: pet.breed
+                }
+            }
+            updatePet(petRequestUpdate)
         }
-        
-            axios.post(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`,pets).then(() => listPets())
+        if (!pet._id) {
+            axios.post(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`, pet).then(() => listPets())
 
-        setName('')
-        setAge(0)
-        setBreed('')
+        }
+
+        const petClean = {
+            'name': '',
+            'age': 0,
+            'breed': ''
+        }
+        setPet(petClean);
+
     }
 
     return (
         <div>
-            <h3>Crear Mascota</h3>
+
 
             <form className='form' onSubmit={add} >
                 <div className="mb-3">
@@ -37,8 +46,11 @@ const Form = ({listPets}) => {
                         className='form-control'
                         id='name'
                         placeholder='name'
-                        value={name}
-                        onChange={e => setName(e.target.value)}
+                        value={pet.name}
+                   
+                        onChange={e => setPet(pet => ({
+                            ...pet, name: e.target.value
+                        }))}
                     />
                 </div>
 
@@ -51,8 +63,11 @@ const Form = ({listPets}) => {
                         className='form-control'
                         id='age'
                         placeholder='Edad de la mascota en años'
-                        value={age}
-                        onChange={e => setAge(e.target.value)}
+                        value={pet.age}
+                      
+                        onChange={e => setPet(pet => ({
+                            ...pet, age: e.target.value
+                        }))}
                     />
                 </div>
 
@@ -65,13 +80,16 @@ const Form = ({listPets}) => {
                         className='form-control'
                         id='breed'
                         placeholder='Raza de la mascota'
-                        value={breed}
-                        onChange={e => setBreed(e.target.value)}
+                        value={pet.breed}
+                
+                        onChange={e => setPet(pet => ({
+                            ...pet, breed: e.target.value
+                        }))}
                     />
                 </div>
 
-                    <button type='submit' id='add' >Crear Mascota</button>
-               
+                <button type='submit' id='add'>Crear Mascota</button>
+
             </form>
         </div>
     );

@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Botton from './botton/Botton';
 import './List.css'
 
-const List = ({ pets }) => {
-
- 
-    const [atributo, setAtributo] = useState({ 'value': 'editar' })
-
+const List = ({ pets, deletePet,findPetById}) => {
+    console.log(pets)
+    
     return (
         <div className='colum'>
 
@@ -24,10 +22,10 @@ const List = ({ pets }) => {
                     {
                         pets.map(pet => (
                             <tr key={pet._id} className=''>
-                                <td>{pet.nombre}</td>
-                                <td>{pet.edad}</td>
-                                <td>{pet.raza}</td>
-                                <td><Botton atributo={atributo} /></td>
+                                <td>{pet.name}</td>
+                                <td>{pet.age}</td>
+                                <td>{pet.breed}</td>
+                                <td><Botton id={pet._id} deletePet={deletePet} findPetById={findPetById}/></td>
                             </tr>
                         ))
                     }
