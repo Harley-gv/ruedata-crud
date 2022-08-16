@@ -3,7 +3,6 @@ import { CREATEPET, EDITPET } from '../../consts/const';
 import {getPetService , putPetService, deletePetService, postPetService} from '../../service/service'
 import Form from '../form/Form';
 import List from '../list/List';
-import {variableEnvironmentDevelopment} from '../../commons/ventorno'
 import {petModel} from '../../models/pet'
 
 
@@ -22,27 +21,27 @@ const Container = () => {
         }
     }
     useEffect(() => {
-        getPetService( `${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`, res => setPets(res.data))
+        getPetService( `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_ENTITY}`, res => setPets(res.data))
     }, [])
 
     const listPets = () => {
-        getPetService(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`, res => setPets(res.data))
+        getPetService(`${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_ENTITY}`, res => setPets(res.data))
     }
     
     const deletePet = (id) => {
-        deletePetService(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}/${id}`, () => listPets())
+        deletePetService(`${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_ENTITY}/${id}`, () => listPets())
     }
 
     const findPetById = (id) => {
-        getPetService(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}/${id}`, res => {setPet(res.data); setBottonFormAction(EDITPET)})
+        getPetService(`${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_ENTITY}/${id}`, res => {setPet(res.data); setBottonFormAction(EDITPET)})
     }
     
     const updatePet = (petRequest) => {
-        putPetService(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}/${petRequest.id}`,petRequest.pet, () =>{listPets(); setBottonFormAction(CREATEPET)})
+        putPetService(`${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_ENTITY}/${petRequest.id}`,petRequest.pet, () =>{listPets(); setBottonFormAction(CREATEPET)})
     }
 
     const createPet = () => {
-        postPetService(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`, pet,() => listPets())
+        postPetService(`${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_ENTITY}`, pet,() => listPets())
     }
 
     return (
