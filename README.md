@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -67,4 +67,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
+
+Instrucciones para ejecutar proyecto de manera local.
+
+ejercicio #1
+
+1. ejecutar el comando npm i para instalar dependencias necesarias y carpeta node mudule 
+
+2. ingresar a la pagina https://crudcrud.com donde al ingresar te generara un link parecido a este https://crudcrud.com/api/1534335ca9f845c4a15bf0b3b6928c04 el el token el cual debes copiar es ese string que esta despues de api/ en este caso este string: 1534335ca9f845c4a15bf0b3b6928c04 seria el token de este ejemplo ya usted copiaria el token que se le genere cuando ingrese a la pagina de https://crudcrud.com
+
+3. agregar el token en el archivo env.development.local en la variable REACT_APP_API_TOKEN y guarda los cambios.
+
+4. luego de guardar los cambios ejecutas el comando npm start para iniciar el servidor el cual le abrira una pestaña en el navegador con el proyecto ya desplegado.
+
+
+ejercicio #2
+
+1. para el ejercicio #2 solo debes ejecutar el comando node exercise2 el cual te mostrara el resultado del ejercicio 2 por consola.
