@@ -1,8 +1,6 @@
 import React from 'react';
-import axios from 'axios';
-import { variableEnvironmentDevelopment } from '../../commons/ventorno'
 
-const Form = ({ listPets, pet, setPet, updatePet, bottonFormAction }) => {
+const Form = ({ formAction , pet, setPet, bottonFormAction }) => {
     const add = e => {
         e.preventDefault();
         
@@ -16,11 +14,10 @@ const Form = ({ listPets, pet, setPet, updatePet, bottonFormAction }) => {
                     breed: pet.breed
                 }
             }
-            updatePet(petRequestUpdate)
+            formAction.updatePet(petRequestUpdate)
         }
         if (!pet._id) {
-            axios.post(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`, pet).then(() => listPets())
-
+            formAction.createPet(pet)
         }
 
         const petClean = {

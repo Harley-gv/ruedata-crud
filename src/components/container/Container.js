@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { CREATEPET, EDITPET } from '../../consts/const';
+import {getPetService , putPetService, deletePetService, postPetService} from '../../adapter/adapter'
 import Form from '../form/Form';
 import List from '../list/List';
 import {variableEnvironmentDevelopment} from '../../commons/ventorno'
@@ -9,36 +10,43 @@ import {petModel} from '../../models/pet'
 const Container = () => {
     
     const [pets, setPets] = useState([])
-    const [bottonFormAction, setBottonFormAction] = useState('Crear Mascota')
+    const [bottonFormAction, setBottonFormAction] = useState(CREATEPET)
     const [pet, setPet] = useState(petModel)
-
+    const formAction = {
+        createPet: (pet) => {
+            createPet(pet)
+        },
+        updatePet: (petRequest) => {
+            updatePet(petRequest)
+        }
+    }
     useEffect(() => {
-        axios.get(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`).then(res => setPets(res.data))
+        getPetService( `${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`, res => setPets(res.data))
     }, [])
 
     const listPets = () => {
-        axios.get(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`).then(res => setPets(res.data))
+        getPetService(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`, res => setPets(res.data))
     }
     
     const deletePet = (id) => {
-        axios.delete(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}/${id}`).then(() => listPets())
+        deletePetService(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}/${id}`, () => listPets())
     }
 
     const findPetById = (id) => {
-        axios.get(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}/${id}`).then(res => {setPet(res.data); setBottonFormAction('Editar Mascota')})
-        
+        getPetService(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}/${id}`, res => {setPet(res.data); setBottonFormAction(EDITPET)})
     }
     
     const updatePet = (petRequest) => {
-
-        axios.put(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}/${petRequest.id}`,petRequest.pet).then(() =>{listPets(); setBottonFormAction('Crear Mascota')})
+        putPetService(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}/${petRequest.id}`,petRequest.pet, () =>{listPets(); setBottonFormAction(CREATEPET)})
     }
 
-
+    const createPet = () => {
+        postPetService(`${variableEnvironmentDevelopment.baseURL}/${variableEnvironmentDevelopment.token}/${variableEnvironmentDevelopment.entidad}`, pet,() => listPets())
+    }
 
     return (
         <div>
-            <Form listPets={listPets} pet={pet} setPet={setPet} updatePet={updatePet} bottonFormAction={bottonFormAction}/>
+            <Form  pet={pet} setPet={setPet} formAction={formAction} bottonFormAction={bottonFormAction}/>
             <List pets={pets} deletePet={deletePet} findPetById={findPetById}/>
         </div>
     );
