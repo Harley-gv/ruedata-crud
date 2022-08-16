@@ -1,5 +1,5 @@
 export const petModel = {
     'name':'',
-    'age':0,
+    'age':'',
     'breed':''
 }

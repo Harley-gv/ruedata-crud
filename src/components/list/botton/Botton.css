@@ -1,0 +1,22 @@
+.container-button {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    display: flex;
+    border-radius: 10rem;
+    margin: auto 1rem;
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: green;
+}
+
+.btn-del:hover {
+    color: red;
+}
