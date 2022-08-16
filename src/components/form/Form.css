@@ -1,0 +1,42 @@
+.form {
+    border: solid transparent;
+    padding: 0.5rem;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-left: 30%;
+    padding-right: 30%;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-container-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-add {
+   background-color: transparent;
+   border-radius: 3rem;
+   border: solid #A49393;
+   cursor: pointer;
+}
+
+.btn-add:hover {
+    background: #A49393;
+    color: aliceblue;
+}
+
+.form-control {
+    border-radius: 10rem;
+    padding: 0.3rem;
+    border: solid #67595E;
+    text-align: center;
+    color:#67595E;
+    background: transparent;
+    outline: none;
+}
