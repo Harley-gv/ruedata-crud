@@ -6,11 +6,11 @@ const List = ({ pets, deletePet,findPetById}) => {
     console.log(pets)
     
     return (
-        <div className='colum'>
+        <div className='container-list'>
 
-            <table>
-                <thead>
-                    <tr>
+            <table className='list-table'>
+                <thead >
+                    <tr className='list-thead'>
                         <th>Nombre</th>
                         <th>Edad</th>
                         <th>Raza</th>
@@ -30,10 +30,6 @@ const List = ({ pets, deletePet,findPetById}) => {
                         ))
                     }
                 </tbody>
-
-
-
-
 
             </table>
         </div>
