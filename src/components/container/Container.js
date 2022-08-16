@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { CREATEPET, EDITPET } from '../../consts/const';
-import {getPetService , putPetService, deletePetService, postPetService} from '../../adapter/adapter'
+import {getPetService , putPetService, deletePetService, postPetService} from '../../service/service'
 import Form from '../form/Form';
 import List from '../list/List';
 import {petModel} from '../../models/pet'
+
 
 
 const Container = () => {
